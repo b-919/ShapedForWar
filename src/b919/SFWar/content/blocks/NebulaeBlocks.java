@@ -18,6 +18,7 @@ import mindustry.type.Category;
 import mindustry.world.Block;
 import mindustry.game.*;
 import mindustry.world.blocks.defense.ForceProjector;
+import mindustry.world.blocks.defense.MendProjector;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.defense.turrets.LaserTurret;
@@ -54,7 +55,7 @@ public class NebulaeBlocks {
             // Other
         calibrePress, soulCuller, oilBore, starKiln, heavyGraphitePress, electricSiliconCrucible, nyctoSporeCultivator, dimensionDrill,
             // defensive
-        luminosityCondenser,
+        luminosityCondenser, microDustMender, crystalMender, bigCryoMender, giantNyctarMender,
             // walls
         blueCrystallizedStardustWall, blueCrystallizedStardustWallLarge, nyctoSteelWall, nyctoSteelWallLarge, nyctoSporeWall, nyctoSporeWallLarge, sporeWall, sporeWallLarge,
             // turrets
@@ -107,13 +108,51 @@ public class NebulaeBlocks {
             requirements(Category.distribution, with(Items.copper, 1, SFWarItems.greenStardust, 1));
             health = 225;
             speed = 0.1010f;
-            itemCapacity = 5;
-            displayedSpeed = 15f;
+            itemCapacity = 3;
+            displayedSpeed = 13f;
         }};
         stainlessDuct = new Duct("stainless-duct"){{
             requirements(Category.distribution, with(SFWarItems.ferrum, 1, SFWarItems.chromium, 1));
             health = 450;
             speed = 60f/18f;
+        }};
+        microDustMender = new MendProjector("micro-dust-mender"){{
+            requirements(Category.effect, with(Items.lead, 30, SFWarItems.ferrum, 25, SFWarItems.blueStardust, 15));
+            consumePower(0f);
+            size = 1;
+            reload = 180f;
+            range = 60f;
+            healPercent = 3f;
+            health = 115;
+        }};
+        crystalMender = new MendProjector("crystal-mender"){{
+            requirements(Category.effect, with(SFWarItems.crystallizedBlueStardust, 5, SFWarItems.crystallizedGreenStardust, 25, SFWarItems.ferrum, 70));
+            consumePower(0f);
+            size = 2;
+            reload = 200f;
+            range = 90f;
+            healPercent = 5f;
+            health = 190*4;
+        }};
+        bigCryoMender = new MendProjector("big-cryo-mender"){{
+            requirements(Category.effect, with(SFWarItems.chromium, 150, SFWarItems.cryogel, 50));
+            consumePower(0f);
+            size = 3;
+            reload = 100f;
+            range = 120f;
+            healPercent = 8f;
+            health = 360*9;
+            consumeLiquid(Liquids.cryofluid, 0.5f);
+            consumeItem(SFWarItems.cryogel, 2).boost();
+        }};
+        giantNyctarMender = new MendProjector("giant-nyctar-mender"){{
+            requirements(Category.effect, with(SFWarItems.chromium, 150));
+            consumePower(0f);
+            size = 4;
+            reload = 600f;
+            range = 180f;
+            healPercent = 25f;
+            health = 520*16;
         }};
         luminosityCondenser = new ForceProjector("luminosity-condenser"){{
             requirements(Category.effect, BuildVisibility.shown, with());

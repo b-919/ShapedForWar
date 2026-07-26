@@ -33,7 +33,7 @@ public class NebulaeUnits {
             targetPriority = -2;
             lowAltitude = false;
             mineWalls = true;
-            mineFloor = false;
+            mineFloor = true;
             mineHardnessScaling = false;
             flying = true;
             mineSpeed = 10f;

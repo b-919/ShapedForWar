@@ -6,7 +6,7 @@ import mindustry.type.Item;
 public class SFWarItems {
     public static Item
             //general items
-            uranium/*U238*/, enrichedUranium/*U235*/, uraninite/*natural uranium*/, ferrum, steel, chromium, sulfur, gunpowder, ruby,
+            uranium/*U238*/, enrichedUranium/*U235*/, uraninite/*natural uranium*/, ferrum, steel, chromium, sulfur, gunpowder, ruby, cryogel/**/,
     //terran
             foodRations, heavyAlloy, armorPlates, heavyArmorPlates, smallCase, mediumCase, bigCase,
             commonAmmo, HEAmmo, APAmmo, ArtilleryRounds, uraniumAmmo,
@@ -110,6 +110,7 @@ public class SFWarItems {
         crystallizedBlueStardust = new Item("crystallized-blue-stardust", Color.valueOf("4684c7")){{}};
         purpleStardust = new Item("purple-stardust", Color.valueOf("000000")){{}};
         crystallizedPurpleStardust = new Item("crystallized-purple-stardust", Color.valueOf("000000")){{}};
+        cryogel = new Item("cryogel", Color.valueOf("000000")){{}};
         yellowStardust = new Item("yellow-stardust", Color.valueOf("bfbf00")){{}};
         solidifiedNyctar = new Item("solidified-nyctar", Color.valueOf("8e00c2")){{}};
         crystallizedYellowStardust = new Item("crystallized-yellow-stardust", Color.valueOf("ffff00")){{}};
