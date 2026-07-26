@@ -118,36 +118,42 @@ public class NebulaeBlocks {
         }};
         microDustMender = new MendProjector("micro-dust-mender"){{
             requirements(Category.effect, with(Items.lead, 30, SFWarItems.ferrum, 25, SFWarItems.blueStardust, 15));
-            consumePower(0f);
+            consumePower(0.5f);
             size = 1;
             reload = 180f;
             range = 60f;
             healPercent = 3f;
             health = 115;
+            baseColor = Color.valueOf("509ff3");
+            phaseColor = baseColor;
         }};
         crystalMender = new MendProjector("crystal-mender"){{
             requirements(Category.effect, with(SFWarItems.crystallizedBlueStardust, 5, SFWarItems.crystallizedGreenStardust, 25, SFWarItems.ferrum, 70));
-            consumePower(0f);
+            consumePower(2f);
             size = 2;
             reload = 200f;
             range = 90f;
             healPercent = 5f;
             health = 190*4;
+            baseColor = Color.valueOf("bf92f9");
+            phaseColor = baseColor;
         }};
         bigCryoMender = new MendProjector("big-cryo-mender"){{
             requirements(Category.effect, with(SFWarItems.chromium, 150, SFWarItems.cryogel, 50));
-            consumePower(0f);
+            consumePower(5f);
             size = 3;
             reload = 100f;
             range = 120f;
             healPercent = 8f;
             health = 360*9;
+            baseColor = Color.valueOf("c0ecff");
+            phaseColor = baseColor;
             consumeLiquid(Liquids.cryofluid, 0.5f);
             consumeItem(SFWarItems.cryogel, 2).boost();
         }};
         giantNyctarMender = new MendProjector("giant-nyctar-mender"){{
             requirements(Category.effect, with(SFWarItems.chromium, 150));
-            consumePower(0f);
+            consumePower(20f);
             size = 4;
             reload = 600f;
             range = 180f;

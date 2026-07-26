@@ -5,14 +5,13 @@ import arc.struct.Seq;
 import mindustry.ai.UnitCommand;
 import mindustry.ai.types.MinerAI;
 import mindustry.ai.types.RepairAI;
+import mindustry.content.Fx;
 import mindustry.entities.bullet.BulletType;
-import mindustry.gen.MechUnit;
-import mindustry.gen.Unit;
-import mindustry.gen.UnitEntity;
-import mindustry.gen.Unitc;
+import mindustry.gen.*;
 import mindustry.graphics.Pal;
 import mindustry.type.UnitType;
 import mindustry.type.weapons.RepairBeamWeapon;
+import mindustry.type.Weapon;
 import mindustry.type.weapons.*;
 
 import static mindustry.Vars.tilesize;
@@ -20,7 +19,7 @@ import static mindustry.Vars.tilesize;
 public class NebulaeUnits {
 
     public static UnitType
-    blackWasp, serpensMundi;
+    blackWasp, unstableDustMass, serpensMundi;
     public static void load(){
         blackWasp = new UnitType("black-wasp"){{
             coreUnitDock = true;
@@ -81,6 +80,48 @@ public class NebulaeUnits {
 
                 bullet = new BulletType(){{
                     maxRange = 100;
+                }};
+            }});
+        }};
+        unstableDustMass = new UnitType("unstable-dust-msss"){{
+            //controller = u -> new BuilderAI(true, coreFleeRange); - I commented this out, is how the unit is controlled by AI
+            constructor = UnitEntity::create;
+            speed = 2.7f;
+            accel = 0.08f;
+            drag = 0.04f;
+            flying = true;
+            health = 70;
+            hitSize = 9;
+            itemCapacity = 10;
+            omniMovement = false;
+            rotateSpeed = 5f;
+
+
+
+            weapons.add(new Weapon(){{
+                shootOnDeath = true;
+                targetUnderBlocks = false;
+                reload = 24f;
+                shootCone = 180f;
+                ejectEffect = Fx.none;
+                shootSound = Sounds.explosionCrawler;
+                shootSoundVolume = 0.4f;
+                x = shootY = 0f;
+                mirror = false;
+                bullet = new BulletType(){{
+                    collidesTiles = false;
+                    collides = false;
+
+                    rangeOverride = 35f;
+                    hitEffect = Fx.pulverize;
+                    speed = 0f;
+                    splashDamageRadius = 75f;
+                    instantDisappear = true;
+                    splashDamage = 170f;
+                    buildingDamageMultiplier = 0.68f;
+                    killShooter = true;
+                    hittable = false;
+                    collidesAir = true;
                 }};
             }});
         }};
