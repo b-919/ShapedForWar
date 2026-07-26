@@ -83,26 +83,25 @@ public class NebulaeUnits {
                 }};
             }});
         }};
-        unstableDustMass = new UnitType("unstable-dust-msss"){{
+        unstableDustMass = new UnitType("unstable-dust-mass"){{
             //controller = u -> new BuilderAI(true, coreFleeRange); - I commented this out, is how the unit is controlled by AI
             constructor = UnitEntity::create;
             speed = 2.7f;
             accel = 0.08f;
             drag = 0.04f;
             flying = true;
-            health = 70;
+            health = 50;
             hitSize = 9;
             itemCapacity = 10;
-            omniMovement = false;
+            omniMovement = true;
             rotateSpeed = 5f;
-
-
+            createWreck = false;
 
             weapons.add(new Weapon(){{
                 shootOnDeath = true;
                 targetUnderBlocks = false;
                 reload = 24f;
-                shootCone = 180f;
+                shootCone = 270f;
                 ejectEffect = Fx.none;
                 shootSound = Sounds.explosionCrawler;
                 shootSoundVolume = 0.4f;
