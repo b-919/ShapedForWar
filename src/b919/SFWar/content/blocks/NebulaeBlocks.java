@@ -1055,7 +1055,6 @@ public class NebulaeBlocks {
             shootCone = 2f;
             shootSound = Sounds.shootForeshadow;
             unitSort = UnitSorts.strongest;
-            envEnabled |= Env.space;
 
             coolantMultiplier = 0.05f;
             liquidCapacity = 60f;
