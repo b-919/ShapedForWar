@@ -186,7 +186,7 @@ public class NebulaeUnits {
             drag = 0.008f;
             flying = true;
             range = 140f;
-            hitSize = 24f;
+            hitSize = 36f;
             lowAltitude = true;
             forceMultiTarget = true;
             armor = 12f;
@@ -195,15 +195,16 @@ public class NebulaeUnits {
             engineSize = 3f;
 
             weapons.add(new Weapon("debug-machinegun"){{
-                y = 23f/4f;
-                x = 9/4f;
+                y = 5.75f;
+                x = 2.25f;
                 minShootVelocity = 2f;
                 shootCone = 10f;
-                reload = 600f;
-                shoot.shots = 300;
+                reload = 2f;
+                shoot.shots = 1;
                 shoot.shotDelay = 2f;
                 ejectEffect = Fx.casing1;
                 mirror = true;
+                rotate = false;
                 bullet = new BasicBulletType(5f, 25){{
                     inaccuracy = 4f;
                     width = 7f;
@@ -211,15 +212,16 @@ public class NebulaeUnits {
                     lifetime = 64f;
                     shootEffect = Fx.shootSmall;
                     smokeEffect = Fx.shootSmallSmoke;
-                    ammoMultiplier = 2;
+                    ammoMultiplier = 1;
                 }};
             }});
             weapons.add(new Weapon("debug-missile"){{
                 reload = 40f;
-                y = -14f/4f;
-                x = 44/4f;
+                y = -3.5f;
+                x = 11f;
                 rotate = false;
                 shake = 1f;
+                shootCone = 10f;
                 shoot.shots = 2;
                 inaccuracy = 5f;
                 velocityRnd = 0.2f;
