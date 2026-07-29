@@ -8,6 +8,7 @@ import mindustry.ai.UnitCommand;
 import mindustry.ai.types.MinerAI;
 import mindustry.ai.types.RepairAI;
 import mindustry.content.Fx;
+import mindustry.entities.bullet.*;
 import mindustry.entities.bullet.BulletType;
 import mindustry.gen.*;
 import mindustry.graphics.Pal;
@@ -22,7 +23,7 @@ import static mindustry.Vars.tilesize;
 public class NebulaeUnits {
 
     public static UnitType
-    blackWasp, unstableDustMass, debugFirst, serpensMundi;
+    blackWasp, unstableDustMass, debugFirst, debugSecond, serpensMundi;
     public static void load(){
         blackWasp = new UnitType("black-wasp"){{
             coreUnitDock = true;
@@ -129,19 +130,18 @@ public class NebulaeUnits {
             }});
         }};
         debugFirst = new UnitType("debug-first"){{
-            researchCostMultiplier = 0.5f;
-            speed = 2.7f;
+            speed = 9f;
             accel = 0.08f;
             drag = 0.04f;
             flying = true;
-            health = 70*10000;
-            engineOffset = 5.75f;
-            hitSize = 9;
+            health = 700*1000;
+            armor = 500*1000;
+            hitSize = 1;
             itemCapacity = 10;
-            circleTarget = true;
-            omniMovement = false;
+            circleTarget = false;
+            omniMovement = true;
+            lowAltitude = false;
             rotateSpeed = 5f;
-            circleTargetRadius = 60f;
             wreckSoundVolume = 0.7f;
 
             moveSound = Sounds.loopThruster;
@@ -149,13 +149,14 @@ public class NebulaeUnits {
             moveSoundPitchMax = 1.5f;
             moveSoundVolume = 0.2f;
 
-            weapons.add(new Weapon(){{
+            weapons.add(new Weapon("debug-first-pointer"){{
                 y = 1f;
                 x = 0f;
                 minShootVelocity = 2f;
-                shootCone = 10f;
-                reload = 80f;
-                shoot.shots = 3;
+                shootCone = 10;
+                reload = 800f;
+                rotate = true;
+                shoot.shots = 1;
                 shoot.shotDelay = 3f;
                 ejectEffect = Fx.casing1;
                 mirror = false;
@@ -175,6 +176,72 @@ public class NebulaeUnits {
                     length = 1200f;
                     hitShake = 3f;
                     ammoMultiplier = 1f;
+                }};
+            }});
+        }};
+        debugSecond = new UnitType("debug-second"){{
+            health = 2500;
+            speed = 6f;
+            accel = 0.03f;
+            drag = 0.008f;
+            flying = true;
+            range = 140f;
+            hitSize = 24f;
+            lowAltitude = true;
+            forceMultiTarget = true;
+            armor = 12f;
+
+            engineOffset = 12f;
+            engineSize = 3f;
+
+            weapons.add(new Weapon("debug-machinegun"){{
+                y = 23f/4f;
+                x = 9/4f;
+                minShootVelocity = 2f;
+                shootCone = 10f;
+                reload = 600f;
+                shoot.shots = 300;
+                shoot.shotDelay = 2f;
+                ejectEffect = Fx.casing1;
+                mirror = true;
+                bullet = new BasicBulletType(5f, 25){{
+                    inaccuracy = 4f;
+                    width = 7f;
+                    height = 9f;
+                    lifetime = 64f;
+                    shootEffect = Fx.shootSmall;
+                    smokeEffect = Fx.shootSmallSmoke;
+                    ammoMultiplier = 2;
+                }};
+            }});
+            weapons.add(new Weapon("debug-missile"){{
+                reload = 40f;
+                y = -14f/4f;
+                x = 44/4f;
+                rotate = false;
+                shake = 1f;
+                shoot.shots = 2;
+                inaccuracy = 5f;
+                velocityRnd = 0.2f;
+                shootSound = Sounds.shootMissileLong;
+
+                bullet = new MissileBulletType(6f, 48){{
+                    width = 8f;
+                    height = 8f;
+                    shrinkY = 0f;
+                    drag = -0.003f;
+                    homingRange = 60f;
+                    scaleKeepVelocity = true;
+                    splashDamageRadius = 45f;
+                    splashDamage = 150f;
+                    lifetime = 50f;
+                    trailColor = Pal.unitBack;
+                    backColor = Pal.unitBack;
+                    frontColor = Pal.unitFront;
+                    hitEffect = Fx.blastExplosion;
+                    despawnEffect = Fx.blastExplosion;
+                    weaveScale = 6f;
+                    weaveMag = 1f;
                 }};
             }});
         }};
