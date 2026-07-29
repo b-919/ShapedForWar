@@ -138,7 +138,7 @@ public class NebulaeUnits {
             armor = 500*1000;
             hitSize = 1;
             itemCapacity = 10;
-            circleTarget = false;
+            circleTarget = true;
             omniMovement = true;
             lowAltitude = false;
             rotateSpeed = 5f;
