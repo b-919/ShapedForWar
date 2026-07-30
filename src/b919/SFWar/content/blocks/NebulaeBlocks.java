@@ -30,6 +30,8 @@ import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.production.Fracker;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.storage.CoreBlock;
+import mindustry.world.blocks.power.*;
+import mindustry.world.blocks.power.BeamNode.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.BuildVisibility;
@@ -48,6 +50,9 @@ public class NebulaeBlocks {
         dustConveyor, stainlessDuct,
             // raw production
         greenStardustPlant, blueStardustFormationPlant,
+            // power transfer
+        copperSteelNode, blueUmbrellaNode, cryogelNode, largeSurgeTower, nyctarTower,
+            // power
             // Nyctar
         gaseousNyctarMixer, liquidNyctarMixer, nyctarSolidifier, nyctoSteelFoundry, pureNyctarRefinery,
             // Stardust
@@ -103,6 +108,55 @@ public class NebulaeBlocks {
 
             unitCapModifier = 64;
             unitType = UnitTypes.toxopid;
+        }};
+        copperSteelNode = new BeamNode("copper-steel-node"){{
+            requirements(Category.power, with(SFWarItems.steel, 8, Items.copper, 4));
+            size = 1;
+            consumesPower = outputsPower = true;
+            health = 45;
+            range = 10;
+            crushFragile = true;
+
+            consumePowerBuffered(500);
+        }};
+        blueUmbrellaNode = new PowerNode("blue-umbrella-node"){{
+            requirements(Category.power, with(SFWarItems.steel, 8, SFWarItems.blueStardust, 5));
+            size = 1;
+            consumesPower = outputsPower = true;
+            health = 105;
+            laserRange = 10;
+            maxNodes = 12;
+            crushFragile = true;
+
+            consumePowerBuffered(1250);
+        }};
+        cryogelNode = new PowerNode("cryogel-node"){{
+            requirements(Category.power, with(SFWarItems.steel, 8, Items.copper, 4));
+            size = 2;
+            consumesPower = outputsPower = true;
+            health = 800;
+            laserRange = 20;
+            maxNodes = 25;
+            crushFragile = false;
+
+            consumePowerBuffered(5000);
+        }};
+        largeSurgeTower = new PowerNode("large-surge-tower"){{
+            requirements(Category.power, with(Items.titanium, 50, SFWarItems.crystallizedYellowStardust, 50, SFWarItems.steel, 500));
+            size = 4;
+            maxNodes = 3;
+            laserRange = 80f;
+            schematicPriority = -15;
+            health = 250*4*4;
+            consumePowerBuffered(250000);
+        }};
+        nyctarTower = new PowerNode("nyctar-tower"){{
+            requirements(Category.power, with(SFWarItems.nyctoSteel, 50, SFWarItems.crystallizedPurpleStardust, 200, SFWarItems.solidifiedNyctar, 300));
+            size = 6;
+            maxNodes = 50;
+            laserRange = 160f;
+            health = 500*6*6;
+            consumePowerBuffered(1250000);
         }};
         dustConveyor = new Conveyor("dust-conveyor"){{
             requirements(Category.distribution, with(Items.copper, 1, SFWarItems.greenStardust, 1));

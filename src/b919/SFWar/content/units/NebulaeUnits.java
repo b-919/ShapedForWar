@@ -149,7 +149,7 @@ public class NebulaeUnits {
             moveSoundPitchMax = 1.5f;
             moveSoundVolume = 0.2f;
 
-            weapons.add(new Weapon("debug-first-pointer"){{
+            weapons.add(new Weapon("b919-sfwar-debug-first-pointer"){{
                 y = 1f;
                 x = 0f;
                 minShootVelocity = 2f;
@@ -187,6 +187,7 @@ public class NebulaeUnits {
             flying = true;
             range = 140f;
             hitSize = 36f;
+            circleTarget = true;
             lowAltitude = true;
             forceMultiTarget = true;
             armor = 12f;
@@ -194,7 +195,7 @@ public class NebulaeUnits {
             engineOffset = 12f;
             engineSize = 3f;
 
-            weapons.add(new Weapon("debug-machinegun"){{
+            weapons.add(new Weapon("b919-sfwar-debug-machinegun"){{
                 y = 5.75f;
                 x = 2.25f;
                 minShootVelocity = 2f;
@@ -215,7 +216,7 @@ public class NebulaeUnits {
                     ammoMultiplier = 1;
                 }};
             }});
-            weapons.add(new Weapon("debug-missile"){{
+            weapons.add(new Weapon("b919-sfwar-debug-missile"){{
                 reload = 40f;
                 y = -3.5f;
                 x = 11f;
