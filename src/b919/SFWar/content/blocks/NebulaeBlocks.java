@@ -53,6 +53,7 @@ public class NebulaeBlocks {
             // power transfer
         copperSteelNode, blueUmbrellaNode, cryogelNode, largeSurgeTower, nyctarTower,
             // power
+        gasBurner,
             // Nyctar
         gaseousNyctarMixer, liquidNyctarMixer, nyctarSolidifier, nyctoSteelFoundry, pureNyctarRefinery,
             // Stardust
@@ -131,7 +132,7 @@ public class NebulaeBlocks {
             consumePowerBuffered(1250);
         }};
         cryogelNode = new PowerNode("cryogel-node"){{
-            requirements(Category.power, with(SFWarItems.steel, 8, Items.copper, 4));
+            requirements(Category.power, with(SFWarItems.chromium, 80, SFWarItems.cryogel, 20));
             size = 2;
             consumesPower = outputsPower = true;
             health = 800;
@@ -144,6 +145,7 @@ public class NebulaeBlocks {
         largeSurgeTower = new PowerNode("large-surge-tower"){{
             requirements(Category.power, with(Items.titanium, 50, SFWarItems.crystallizedYellowStardust, 50, SFWarItems.steel, 500));
             size = 4;
+            consumesPower = outputsPower = true;
             maxNodes = 3;
             laserRange = 80f;
             schematicPriority = -15;
@@ -153,6 +155,7 @@ public class NebulaeBlocks {
         nyctarTower = new PowerNode("nyctar-tower"){{
             requirements(Category.power, with(SFWarItems.nyctoSteel, 50, SFWarItems.crystallizedPurpleStardust, 200, SFWarItems.solidifiedNyctar, 300));
             size = 6;
+            consumesPower = outputsPower = true;
             maxNodes = 50;
             laserRange = 160f;
             health = 500*6*6;
@@ -262,6 +265,28 @@ public class NebulaeBlocks {
 
             consumeLiquid(Liquids.water, 0.15f).boost();
         }};
+        gaseousNyctarMixer = new GenericCrafter("gaseous-nyctar-mixer"){{
+            requirements(Category.crafting, with(SFWarItems.ferrum, 50, Items.copper, 50));
+            outputLiquid = new LiquidStack(SFWarLiquids.gaseousNyctar, 6f / 60f);
+            craftTime = 60f;
+            liquidCapacity = 60f;
+            size = 2;
+            hasLiquids = true;
+
+            consumeItems(with(Items.coal, 1, SFWarItems.greenStardust, 1));
+        }};
+        gasBurner = new ConsumeGenerator("gas-burner"){{
+            requirements(Category.power, with(Items.copper, 50, SFWarItems.ferrum, 50));
+            powerProduction = 666f / 60f;
+            researchCost = with(Items.graphite, 2000, Items.tungsten, 1000, Items.oxide, 10, Items.silicon, 1500);
+            consumeLiquid(SFWarLiquids.gaseousNyctar, 6f / 60f);
+            generateEffect = Fx.none;
+
+            liquidCapacity = 20f * 5;
+
+            ambientSound = Sounds.loopSmelter;
+            ambientSoundVolume = 0.06f;
+        }};
         starKiln = new MultiRecipeCrafter("star-kiln"){{
             requirements(Category.crafting, with(Items.copper, 60, SFWarItems.greenStardust, 30, Items.lead, 30));
             craftEffect = Fx.smeltsmoke;
@@ -293,16 +318,6 @@ public class NebulaeBlocks {
             consumeItems(with());
             consumePower(1f);
             consumeLiquid(Liquids.water, 0.1f);
-        }};
-        gaseousNyctarMixer = new GenericCrafter("gaseous-nyctar-mixer"){{
-            requirements(Category.crafting, with());
-            outputLiquid = new LiquidStack(SFWarLiquids.gaseousNyctar, 6f / 60f);
-            craftTime = 60f;
-            liquidCapacity = 60f;
-            size = 2;
-            hasLiquids = true;
-
-            consumeItems(with(Items.coal, 1, SFWarItems.greenStardust, 1));
         }};
         reinforcedDustDrill = new Drill("reinforced-dust-drill"){{
             requirements(Category.production, with(SFWarItems.blueStardust, 10, SFWarItems.greenStardust, 10, Items.copper, 30));

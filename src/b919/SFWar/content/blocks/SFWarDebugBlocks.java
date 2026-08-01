@@ -13,6 +13,7 @@ import b919.SFWar.world.upgrade.UpgraderBlock;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
+import mindustry.content.UnitTypes;
 import mindustry.entities.UnitSorts;
 import mindustry.entities.abilities.MoveEffectAbility;
 import b919.SFWar.content.bullets.NukeBulletType;
@@ -411,6 +412,10 @@ public class SFWarDebugBlocks {
             size = 3;
             plans = new Seq<>();
             plans.add(new UnitFactory.UnitPlan(DebugUnit.debugDagger, 300f, ItemStack.with(Items.copper, 20)));
+            plans.add(new UnitFactory.UnitPlan(DebugUnit.debugFirst, 3600f, ItemStack.with(Items.coal, 20)));
+            plans.add(new UnitFactory.UnitPlan(DebugUnit.debugSecond, 300f, ItemStack.with(Items.lead, 20)));
+            plans.add(new UnitFactory.UnitPlan(UnitTypes.conquer, 300f, ItemStack.with(Items.copper, 20)));
+            // ^ what if unit bigger than factory how does it look
         }};
     }
 }
