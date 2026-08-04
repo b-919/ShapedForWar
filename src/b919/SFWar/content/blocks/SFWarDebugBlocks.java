@@ -4,16 +4,14 @@ import arc.graphics.Color;
 import arc.math.Interp;
 import arc.math.Mathf;
 import arc.struct.Seq;
+import b919.SFWar.content.SFWarItems;
 import b919.SFWar.content.SFWarUpgrades;
 import b919.SFWar.content.units.DebugUnit;
 import b919.SFWar.content.units.TerranUnits;
 import b919.SFWar.world.production.MultiRecipeCrafter;
 import b919.SFWar.world.production.Recipe;
 import b919.SFWar.world.upgrade.UpgraderBlock;
-import mindustry.content.Fx;
-import mindustry.content.Items;
-import mindustry.content.Liquids;
-import mindustry.content.UnitTypes;
+import mindustry.content.*;
 import mindustry.entities.UnitSorts;
 import mindustry.entities.abilities.MoveEffectAbility;
 import b919.SFWar.content.bullets.NukeBulletType;
@@ -30,6 +28,7 @@ import mindustry.type.unit.MissileUnitType;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.consumers.ConsumeLiquid;
 import mindustry.world.draw.DrawTurret;
@@ -417,5 +416,24 @@ public class SFWarDebugBlocks {
             plans.add(new UnitFactory.UnitPlan(UnitTypes.conquer, 300f, ItemStack.with(Items.copper, 20)));
             // ^ what if unit bigger than factory how does it look
         }};
+    }
+
+    public static void overrideVanillaBlocks(){
+        Block cfBlock = Blocks.coreFoundation;
+        CoreBlock cf = (CoreBlock) cfBlock;
+        cf.requirements = new ItemStack[]{
+            new ItemStack(SFWarItems.ferrum, 3000),
+            new ItemStack(Items.lead, 3000),
+            new ItemStack(Items.silicon, 2000)
+        };
+        cf.unitType = UnitTypes.disrupt;
+        cf.health = 3500;
+        cf.itemCapacity = 9000;
+        cf.size = 4;
+        cf.thrusterLength = 34/4f;
+        cf.incinerateNonBuildable = true;
+        cf.unitCapModifier = 16;
+        cf.researchCostMultiplier = 0.07f;
+        cf.init();
     }
 }

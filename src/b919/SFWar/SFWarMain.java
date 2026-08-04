@@ -39,6 +39,7 @@ public class SFWarMain extends Mod{
         });
         Events.on(EventType.FileTreeInitEvent.class, e -> Core.app.post(SFWarSounds::load));
         Events.on(EventType.ContentInitEvent.class, e -> Core.app.post(() -> {
+            SFWarDebugBlocks.overrideVanillaBlocks();
             if (!Vars.headless) {
                 new SFWarSFX();
             }
